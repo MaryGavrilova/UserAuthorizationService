@@ -13,15 +13,11 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository
 public class UserRepository {
 
-    protected final Map<String, User> database = new ConcurrentHashMap<>();
+    protected final Map<User, List<Authorities>> database = new ConcurrentHashMap<>();
 
-    public List<Authorities> getUserAuthorities(String user, String password) {
+    public List<Authorities> getUserAuthorities(User user) {
         if (database.containsKey(user)) {
-            if (database.get(user).getPassword().equals(password)) {
-                return database.get(user).getAuthorities();
-            } else {
-                return Collections.emptyList();
-            }
+            return database.get(user);
         } else {
             return Collections.emptyList();
         }
