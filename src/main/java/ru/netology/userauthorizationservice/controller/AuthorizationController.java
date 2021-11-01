@@ -2,6 +2,7 @@ package ru.netology.userauthorizationservice.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,7 @@ import ru.netology.userauthorizationservice.service.AuthorizationService;
 
 import javax.validation.Valid;
 import java.util.List;
-
+@Validated
 @RestController
 public class AuthorizationController {
     AuthorizationService service;
