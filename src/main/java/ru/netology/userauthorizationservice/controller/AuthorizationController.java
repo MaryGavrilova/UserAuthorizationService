@@ -11,6 +11,7 @@ import ru.netology.userauthorizationservice.model.Authorities;
 import ru.netology.userauthorizationservice.model.User;
 import ru.netology.userauthorizationservice.service.AuthorizationService;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.List;
 @Validated
@@ -32,4 +33,8 @@ public class AuthorizationController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
     }
 
+    @ExceptionHandler(ConstraintViolationException.class)
+    ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
 }
